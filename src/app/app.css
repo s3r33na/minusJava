@@ -1,0 +1,30 @@
+/* --- Preloader Overlay --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Opacity starts at 1, GSAP will handle bringing it to 0 */
+    opacity: 1; 
+}
+
+.logo-text {
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* --- Main Content --- */
+
+
+h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    max-width: 800px;
+}

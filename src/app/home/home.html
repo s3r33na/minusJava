@@ -1,0 +1,1699 @@
+<nav
+  class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 flex items-center px-4 md:px-6 py-2.5 rounded-full w-[95%] md:w-[90%] max-w-250 bg-[#161311]/85 backdrop-blur-md border border-[#e3dbce]/10 shadow-[0_10px_40px_rgba(0,0,0,0.6)] transition-transform duration-300 ease-in-out"
+  [class.-translate-y-[250%]]="isNavHidden"
+>
+  <div class="flex items-center gap-2 mr-4 md:mr-6 shrink-0">
+    <svg
+      class="w-6 h-6 md:w-7 md:h-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12 2L2 22h20L12 2z" fill="#e3dbce" />
+      <circle cx="12" cy="16" r="3" fill="#161311" />
+    </svg>
+    <span class="font-extrabold text-lg md:text-xl tracking-tight text-[#e3dbce]">MINUSJAVA</span>
+  </div>
+
+  <div class="hidden md:block w-px h-6 bg-[#e3dbce]/20 mr-8"></div>
+
+  <ul
+    class="flex items-center justify-start md:justify-between flex-1 list-none m-0 p-0 overflow-x-auto gap-2 md:gap-0 no-scrollbar whitespace-nowrap"
+  >
+    <li class="shrink-0">
+      <a
+        href="#"
+        class="block text-[#161311] bg-[#e3dbce] font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >Home</a
+      >
+    </li>
+    <li class="shrink-0">
+      <a
+        (click)="scrollToSection('services')"
+        class="block text-[#e3dbce] hover:bg-[#e3dbce]/15 cursor-pointer font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >Services</a
+      >
+    </li>
+    <li class="shrink-0">
+      <a
+        (click)="scrollToSection('projects')"
+        class="block text-[#e3dbce] hover:bg-[#e3dbce]/15 cursor-pointer font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >Projects</a
+      >
+    </li>
+    <li class="shrink-0">
+      <a
+        href="#"
+        class="block text-[#e3dbce] hover:bg-[#e3dbce]/15 font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >Team</a
+      >
+    </li>
+    <li class="shrink-0">
+      <a
+        href="#"
+        class="block text-[#e3dbce] hover:bg-[#e3dbce]/15 font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >Blog</a
+      >
+    </li>
+    <li class="shrink-0">
+      <a
+        href="#"
+        class="block text-[#e3dbce] hover:bg-[#e3dbce]/15 font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >FAQ</a
+      >
+    </li>
+    <li class="shrink-0">
+      <a
+        href="#"
+        class="block text-[#e3dbce] hover:bg-[#e3dbce]/15 font-bold text-sm md:text-[0.95rem] px-4 md:px-5 py-2 rounded-full transition-all duration-200"
+        >Contact</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<div
+  class="hidden md:flex fixed right-10 top-1/2 -translate-y-1/2 h-64 w-4 z-50 pointer-events-none justify-center"
+>
+  <div class="absolute inset-y-0 w-px bg-[#c295ec]/20"></div>
+  <div
+    class="absolute w-0.75 h-10 bg-[#c295ec] rounded-full shadow-[0_0_12px_rgba(193,59,39,0.9)] will-change-[top,transform]"
+    [style.top.%]="scrollProgress"
+    [style.transform]="'translateY(-' + scrollProgress + '%)'"
+  ></div>
+</div>
+
+<div #panelContainer class="relative z-10">
+  <main #mainEl class="panel relative min-h-svhw-full overflow-hidden">
+    <div
+      class="absolute bottom-8 left-6 md:bottom-12 md:left-12 z-40 flex flex-col gap-2 max-w-lg w-[85%] md:w-auto pointer-events-none"
+    >
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-[#c295ec] text-[0.65rem] font-bold tracking-[0.3em] uppercase"
+          >Web Studio</span
+        >
+        <div class="w-1 h-1 rounded-full bg-[#c295ec]"></div>
+      </div>
+      <h1
+        class="split-heading text-[#e3dbce] text-4xl sm:text-5xl md:text-[4rem] font-serif font-black italic leading-[1.05] tracking-tight drop-shadow-lg"
+      >
+        We craft digital <br />
+        experiences
+      </h1>
+      <p
+        class="split-body text-[#e3dbce]/70 text-[0.9rem] font-medium mt-3 leading-relaxed max-w-md"
+      >
+        We engineer the success of your vision through technology and innovation.
+      </p>
+      <div class="w-[90%] border-b border-dashed border-[#c295ec]/20 mt-4 md:mt-6"></div>
+    </div>
+
+    <div class="logo-outer w-full h-full relative grid place-items-center bg-[#0e100f]">
+      <canvas
+        #debrisCanvas
+        class="debris-canvas absolute inset-0 w-full h-full opacity-85"
+      ></canvas>
+      <div
+        #logoText
+        class="logo-container relative z-10 flex items-center justify-center whitespace-nowrap text-[clamp(40px,12vw,150px)] font-black uppercase pointer-events-none"
+      >
+        <span class="text-part">MINUSJ</span>
+        <svg
+          class="custom-a w-[0.74em] mx-[-0.02em] inline-block"
+          viewBox="0 0 116 100"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <polygon points="0,100 40,0 76,0 116,100 86,100 58,23 30,100" fill="#e3dbce" />
+          <polygon points="42,62 74,62 58,88" fill="#62b8f1" />
+        </svg>
+        <span class="text-part">V</span>
+        <svg
+          class="custom-a w-[0.74em] mx-[-0.02em] inline-block"
+          viewBox="0 0 116 100"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <polygon points="0,100 40,0 76,0 116,100 86,100 58,23 30,100" fill="#e3dbce" />
+          <polygon points="42,62 74,62 58,88" fill="#62b8f1" />
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <section
+    class="panel relative min-h-svh py-24 w-full flex items-center justify-center px-6 z-20 bg-[#0e100f] bg-[radial-gradient(ellipse_at_bottom_left,#151422_0%,#0e100f_60%)]"
+  >
+    <div
+      class="absolute inset-0 pointer-events-none opacity-40"
+      style="
+        background-image: radial-gradient(rgba(227, 219, 206, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+      "
+    ></div>
+
+    <div
+      class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10"
+    >
+      <div class="max-w-xl">
+        <h2
+          class="split-heading text-[#e3dbce] text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-serif font-black italic leading-[1.1] tracking-tight"
+        >
+          Your business is ready to scale,<br />
+          <span class="text-[#c295ec]">but is your tech stack holding you back?</span>
+        </h2>
+        <p
+          class="split-body mt-6 md:mt-8 text-[1rem] md:text-[1.1rem] text-white/70 leading-relaxed font-medium"
+        >
+          Companies lose <span class="text-[#c295ec] italic">countless hours</span> to
+          <strong class="text-[#e3dbce] font-bold">manual processes</strong>, human errors, and a
+          digital presence
+          <strong class="text-[#e3dbce] font-bold border-b border-[#e3dbce]/30 pb-0.5"
+            >that doesn't reflect</strong
+          >
+          their true value.
+        </p>
+        <div class="mt-6 md:mt-8 border-l-[3px] border-[#c295ec] pl-4 md:pl-6 py-1">
+          <p
+            class="split-body text-[1rem] md:text-[1.1rem] text-white/70 leading-relaxed font-medium"
+          >
+            minusJava builds
+            <span class="italic font-serif text-[#e3dbce]">tailor-made solutions</span>: websites,
+            apps, and automations that
+            <strong class="text-[#c295ec] font-bold">streamline operations</strong>, renew your
+            brand and make your business
+            <strong class="text-[#e3dbce] font-bold border-b-2 border-[#e3dbce]/40 pb-0.5"
+              >faster and more predictable</strong
+            >.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 md:gap-5">
+        <div
+          class="bg-white/2 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-[#c295ec]/40 hover:bg-white/4 transition-all duration-300"
+        >
+          <div
+            class="w-10 h-10 rounded-xl bg-[#c295ec]/10 flex items-center justify-center text-[#c295ec] mb-4 md:mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="split-heading text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#e3dbce]">
+            A brand that converts
+          </h3>
+          <p class="split-body text-white/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed">
+            A cutting-edge web presence that commands attention and builds lasting trust.
+          </p>
+        </div>
+
+        <div
+          class="bg-white/2 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-[#c295ec]/40 hover:bg-white/4 transition-all duration-300"
+        >
+          <div
+            class="w-10 h-10 rounded-xl bg-[#c295ec]/10 flex items-center justify-center text-[#c295ec] mb-4 md:mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <h3 class="split-heading text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#e3dbce]">
+            Reclaim your time
+          </h3>
+          <p class="split-body text-white/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed">
+            Eliminate errors and recover valuable hours by automating repetitive, manual tasks.
+          </p>
+        </div>
+
+        <div
+          class="bg-white/2 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-[#c295ec]/40 hover:bg-white/4 transition-all duration-300"
+        >
+          <div
+            class="w-10 h-10 rounded-xl bg-[#c295ec]/10 flex items-center justify-center text-[#c295ec] mb-4 md:mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3v18h18M9 9l3 3 3-3 6 6M9 15v6m6-6v6m6-6v6"
+              />
+            </svg>
+          </div>
+          <h3 class="split-heading text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#e3dbce]">
+            Scalability without chaos
+          </h3>
+          <p class="split-body text-white/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed">
+            Build processes ready to scale without the immediate need for additional headcount.
+          </p>
+        </div>
+
+        <div
+          class="bg-white/2 border border-white/5 p-6 md:p-8 rounded-2xl hover:border-[#c295ec]/40 hover:bg-white/4 transition-all duration-300"
+        >
+          <div
+            class="w-10 h-10 rounded-xl bg-[#c295ec]/10 flex items-center justify-center text-[#c295ec] mb-4 md:mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </div>
+          <h3 class="split-heading text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#e3dbce]">
+            True partnership
+          </h3>
+          <p class="split-body text-white/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed">
+            Interconnected tools and a dedicated team supporting you before, during, and after
+            launch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="panel relative min-h-svh py-24 w-full flex items-center justify-center px-6 z-20 bg-[#0e100f] bg-[radial-gradient(ellipse_at_bottom_left,#151422_0%,#0e100f_60%)]"
+  >
+    <div
+      class="absolute inset-0 pointer-events-none opacity-30"
+      style="
+        background-image: radial-gradient(rgba(227, 219, 206, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+      "
+    ></div>
+
+    <div class="max-w-6xl mx-auto w-full relative z-10 flex flex-col items-center">
+      <div class="text-center mb-12 md:mb-16">
+        <h2
+          class="split-heading text-[#e3dbce] text-4xl sm:text-5xl md:text-[4.5rem] font-serif font-black italic leading-[1.05] tracking-tight"
+        >
+          Concrete results,<br />
+          <span class="text-[#c295ec] relative inline-block">
+            not just promises.
+            <svg
+              class="absolute w-full h-2 md:h-3 -bottom-1 md:-bottom-2 left-0 text-[#c295ec]/60"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 5 Q 50 10 100 5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-dasharray="6 4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </h2>
+        <p class="split-body mt-6 md:mt-8 text-base md:text-lg text-[#e3dbce]/80">
+          Transforming complexity into
+          <strong class="text-[#62b8f1] border-b-2 border-[#62b8f1] pb-0.5"
+            >measurable impact</strong
+          >.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 w-full mb-4 md:mb-6">
+        <div
+          class="gsap-levitate-card border-white/5 py-8 md:py-10 px-6 md:px-8 bg-white/2 border rounded-2xl flex flex-col items-center text-center"
+        >
+          <svg
+            class="w-6 h-6 text-[#c295ec] mb-3 md:mb-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            />
+          </svg>
+          <div
+            class="split-heading text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#e3dbce] italic mb-1"
+          >
+            300%
+          </div>
+          <div class="split-body text-white/50 text-xs md:text-sm tracking-wide">
+            Average Growth
+          </div>
+        </div>
+        <div
+          class="gsap-levitate-card border-white/5 py-8 md:py-10 px-6 md:px-8 bg-white/2 border rounded-2xl flex flex-col items-center text-center"
+        >
+          <svg
+            class="w-6 h-6 text-[#c295ec] mb-3 md:mb-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <div
+            class="split-heading text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#e3dbce] italic mb-1"
+          >
+            4 Weeks
+          </div>
+          <div class="split-body text-white/50 text-xs md:text-sm tracking-wide">
+            Average Delivery Time
+          </div>
+        </div>
+        <div
+          class="gsap-levitate-card border-white/5 py-8 md:py-10 px-6 md:px-8 bg-white/2 border rounded-2xl flex flex-col items-center text-center"
+        >
+          <svg
+            class="w-6 h-6 text-[#c295ec] mb-3 md:mb-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+            />
+          </svg>
+          <div
+            class="split-heading text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#e3dbce] italic mb-1"
+          >
+            98%
+          </div>
+          <div class="split-body text-white/50 text-xs md:text-sm tracking-wide">
+            Satisfied Clients
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full">
+        <div
+          class="gsap-glow-card relative overflow-hidden border-white/5 py-8 md:py-10 px-6 md:px-8 bg-white/2 border rounded-2xl flex flex-col"
+        >
+          <div class="flex gap-1 mb-4 text-[#62b8f1]">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              ></path>
+            </svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+          </div>
+          <p class="split-body text-white/60 italic text-sm leading-relaxed grow mb-6">
+            "We automated 90% of repetitive tasks. A total game-changer for our customer care
+            operations."
+          </p>
+          <div class="flex items-baseline gap-2 mb-4">
+            <span class="text-2xl md:text-3xl font-serif font-black italic text-[#c295ec]">90%</span
+            ><span
+              class="text-white/50 text-[0.65rem] md:text-xs font-bold tracking-widest uppercase"
+              >Automation</span
+            >
+          </div>
+          <div class="w-full h-px bg-white/10 mb-4"></div>
+          <div class="split-body">
+            <div class="text-[#e3dbce] font-bold text-sm">Marco R.</div>
+            <div class="text-white/40 text-[0.7rem] md:text-xs italic mt-1">
+              CEO <span class="text-[#c295ec] mx-1">&bull;</span> Studio Legale Associato
+            </div>
+          </div>
+        </div>
+        <div
+          class="gsap-glow-card relative overflow-hidden border-white/5 py-8 md:py-10 px-6 md:px-8 bg-white/2 border rounded-2xl flex flex-col"
+        >
+          <div class="flex gap-1 mb-4 text-[#62b8f1]">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+          </div>
+          <p class="split-body text-white/60 italic text-sm leading-relaxed grow mb-6">
+            "The manual workload has been drastically reduced. Now the team can focus on strategic
+            growth."
+          </p>
+          <div class="flex items-baseline gap-2 mb-4">
+            <span class="text-2xl md:text-3xl font-serif font-black italic text-[#c295ec]">60%</span
+            ><span
+              class="text-white/50 text-[0.65rem] md:text-xs font-bold tracking-widest uppercase"
+              >Efficiency</span
+            >
+          </div>
+          <div class="w-full h-px bg-white/10 mb-4"></div>
+          <div class="split-body">
+            <div class="text-[#e3dbce] font-bold text-sm">Sara B.</div>
+            <div class="text-white/40 text-[0.7rem] md:text-xs italic mt-1">
+              Operations Manager <span class="text-[#c295ec] mx-1">&bull;</span> Agenzia Digitale
+            </div>
+          </div>
+        </div>
+        <div
+          class="gsap-glow-card relative overflow-hidden border-white/5 py-8 md:py-10 px-6 md:px-8 bg-white/2 border rounded-2xl flex flex-col"
+        >
+          <div class="flex gap-1 mb-4 text-[#62b8f1]">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              /></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+          </div>
+          <p class="split-body text-white/60 italic text-sm leading-relaxed grow mb-6">
+            "The investment paid off in weeks. The ROI was immediate, clear, and measurable."
+          </p>
+          <div class="flex items-baseline gap-2 mb-4">
+            <span class="text-2xl md:text-3xl font-serif font-black italic text-[#c295ec]">3x</span
+            ><span
+              class="text-white/50 text-[0.65rem] md:text-xs font-bold tracking-widest uppercase"
+              >ROI</span
+            >
+          </div>
+          <div class="w-full h-px bg-white/10 mb-4"></div>
+          <div class="split-body">
+            <div class="text-[#e3dbce] font-bold text-sm">Luca V.</div>
+            <div class="text-white/40 text-[0.7rem] md:text-xs italic mt-1">
+              Founder <span class="text-[#c295ec] mx-1">&bull;</span> E-commerce Fashion
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="services"
+    class="panel relative min-h-svh py-24 w-full flex flex-col justify-center px-6 z-20 bg-[#f3e5dc] overflow-hidden"
+  >
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      <svg
+        class="float-icon float-delay-1 w-16 h-16 md:w-20 md:h-20"
+        style="top: 10%; left: 8%"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-2 w-12 h-12 md:w-16 md:h-16"
+        style="top: 15%; right: 10%; transform: rotate(15deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-3 w-16 h-16 md:w-20 md:h-20"
+        style="bottom: 12%; left: 12%; transform: rotate(-20deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-4 w-14 h-14 md:w-16 md:h-16"
+        style="bottom: 18%; right: 15%; transform: rotate(10deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-5 w-16 h-16 md:w-24 md:h-24"
+        style="top: 45%; left: 2%; opacity: 0.15"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-6 w-14 h-14 md:w-16 md:h-16"
+        style="top: 40%; right: 4%; opacity: 0.15"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0v3.75C20.25 19.903 16.556 21.75 12 21.75s-8.25-1.847-8.25-4.125v-3.75"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-7 w-16 h-16 md:w-20 md:h-20"
+        style="top: 25%; left: 35%; opacity: 0.1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-8 w-12 h-12 md:w-16 md:h-16"
+        style="bottom: 35%; right: 28%; transform: rotate(30deg); opacity: 0.1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z"
+        />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m6 0h-3" />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-9 w-14 h-14 md:w-18 md:h-18"
+        style="top: 12%; right: 35%; transform: rotate(-10deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-10 w-14 h-14 md:w-16 md:h-16"
+        style="bottom: 8%; left: 30%; opacity: 0.15; transform: rotate(5deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
+        />
+      </svg>
+    </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto w-full relative z-10 flex flex-col justify-center">
+      <div class="mb-10 md:mb-12 max-w-3xl">
+        <h2
+          class="split-heading text-[#0e100f] text-4xl sm:text-5xl md:text-[5rem] font-serif font-black italic leading-[1.05] tracking-tight"
+        >
+          Digital Solutions<br />
+          <span class="text-[#c295ec]">Without Compromise</span>
+        </h2>
+        <p
+          class="split-body mt-4 md:mt-6 text-[1rem] md:text-[1.1rem] text-[#0e100f]/80 tracking-wide"
+        >
+          <strong class="text-[#0e100f] font-bold">Advanced technology</strong> and
+          <em class="text-[#62b8f1] font-serif italic">premium design</em>.<br />
+          We build the <em class="text-[#0e100f] font-serif italic">tools</em> for your
+          <strong class="text-[#c295ec] border-b-2 border-[#c295ec] pb-0.5">future</strong>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 w-full">
+        <div
+          class="gsap-card bg-[#161311]/95 border border-[#e3dbce]/10 p-6 md:p-8 rounded-3xl flex flex-col group hover:border-[#c295ec]/40 transition-colors duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+        >
+          <div class="flex justify-between items-start mb-6 md:mb-8">
+            <span class="text-[#c295ec] font-serif text-xl md:text-2xl italic font-bold">01</span>
+            <svg
+              class="w-6 h-6 md:w-7 md:h-7 text-[#e3dbce]/30 group-hover:text-[#62b8f1] transition-colors duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+          </div>
+          <h3
+            class="split-heading text-2xl md:text-3xl font-serif font-black text-[#e3dbce] italic mb-3 md:mb-4"
+          >
+            Web & E-commerce
+          </h3>
+          <p
+            class="split-body text-[#e3dbce]/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed mb-6 md:mb-8 grow"
+          >
+            High-performance platforms engineered to convert visitors into loyal customers.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >Shopify & Custom</span
+            >
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >Enterprise Websites</span
+            >
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >SEO Optimization</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="gsap-card bg-[#161311]/95 border border-[#e3dbce]/10 p-6 md:p-8 rounded-3xl flex flex-col group hover:border-[#c295ec]/40 transition-colors duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+        >
+          <div class="flex justify-between items-start mb-6 md:mb-8">
+            <span class="text-[#c295ec] font-serif text-xl md:text-2xl italic font-bold">02</span>
+            <svg
+              class="w-6 h-6 md:w-7 md:h-7 text-[#e3dbce]/30 group-hover:text-[#62b8f1] transition-colors duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+              />
+            </svg>
+          </div>
+          <h3
+            class="split-heading text-2xl md:text-3xl font-serif font-black text-[#e3dbce] italic mb-3 md:mb-4"
+          >
+            AI & Automation
+          </h3>
+          <p
+            class="split-body text-[#e3dbce]/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed mb-6 md:mb-8 grow"
+          >
+            Optimize workflows and reduce overhead through intelligent automation.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >AI Agents</span
+            >
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >Lead Qualification</span
+            >
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >Document Automation</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="gsap-card bg-[#161311]/95 border border-[#e3dbce]/10 p-6 md:p-8 rounded-3xl flex flex-col group hover:border-[#c295ec]/40 transition-colors duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+        >
+          <div class="flex justify-between items-start mb-6 md:mb-8">
+            <span class="text-[#c295ec] font-serif text-xl md:text-2xl italic font-bold">03</span>
+            <svg
+              class="w-6 h-6 md:w-7 md:h-7 text-[#e3dbce]/30 group-hover:text-[#62b8f1] transition-colors duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              />
+            </svg>
+          </div>
+          <h3
+            class="split-heading text-2xl md:text-3xl font-serif font-black text-[#e3dbce] italic mb-3 md:mb-4"
+          >
+            App & Software
+          </h3>
+          <p
+            class="split-body text-[#e3dbce]/60 text-[0.85rem] md:text-[0.9rem] leading-relaxed mb-6 md:mb-8 grow"
+          >
+            Bespoke software designed to solve your specific business challenges.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >iOS/Android Apps</span
+            >
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >Custom Dashboards</span
+            >
+            <span
+              class="border border-[#e3dbce]/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-[0.65rem] md:text-xs text-[#e3dbce]/50 bg-[#e3dbce]/2"
+              >Data Integration</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="projects"
+    class="panel relative min-h-svh h-auto py-32 w-full flex flex-col px-4 md:px-6 z-20 bg-[#f3e5dc]"
+  >
+    <div
+      class="absolute inset-0 pointer-events-none opacity-30"
+      style="
+        background-image:
+          linear-gradient(rgba(14, 16, 15, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(14, 16, 15, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px;
+      "
+    ></div>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      <svg
+        class="float-icon float-delay-1 w-16 h-16 md:w-20 md:h-20"
+        style="top: 10%; left: 8%"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-2 w-12 h-12 md:w-16 md:h-16"
+        style="top: 15%; right: 10%; transform: rotate(15deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-3 w-16 h-16 md:w-20 md:h-20"
+        style="bottom: 12%; left: 12%; transform: rotate(-20deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-4 w-14 h-14 md:w-16 md:h-16"
+        style="bottom: 18%; right: 15%; transform: rotate(10deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-5 w-16 h-16 md:w-24 md:h-24"
+        style="top: 45%; left: 2%; opacity: 0.15"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-6 w-14 h-14 md:w-16 md:h-16"
+        style="top: 40%; right: 4%; opacity: 0.15"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0v3.75C20.25 19.903 16.556 21.75 12 21.75s-8.25-1.847-8.25-4.125v-3.75"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-7 w-16 h-16 md:w-20 md:h-20"
+        style="top: 25%; left: 35%; opacity: 0.1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-8 w-12 h-12 md:w-16 md:h-16"
+        style="bottom: 35%; right: 28%; transform: rotate(30deg); opacity: 0.1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4.5 12a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z"
+        />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m6 0h-3" />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-9 w-14 h-14 md:w-18 md:h-18"
+        style="top: 12%; right: 35%; transform: rotate(-10deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+        />
+      </svg>
+
+      <svg
+        class="float-icon float-delay-10 w-14 h-14 md:w-16 md:h-16"
+        style="bottom: 8%; left: 30%; opacity: 0.15; transform: rotate(5deg)"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
+        />
+      </svg>
+    </div>
+    <div class="max-w-7xl mx-auto w-full my-auto flex flex-col justify-center relative z-10">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 md:mb-12">
+        <h2
+          class="split-heading text-[#0e100f] text-4xl sm:text-5xl md:text-[5.5rem] font-serif font-black italic leading-[1.05] tracking-tight mb-4 sm:mb-0"
+        >
+          Selected<br />
+          <span class="text-[#62b8f1]">Works</span>
+        </h2>
+        <a
+          href="#"
+          class="flex items-center gap-3 text-[#0e100f] hover:text-[#c295ec] transition-colors pb-2 md:pb-4 group"
+        >
+          <span class="font-bold tracking-widest uppercase text-xs">View Archive</span>
+          <div
+            class="w-8 h-8 rounded-full border border-[#0e100f]/20 group-hover:border-[#c295ec] flex items-center justify-center group-hover:bg-[#c295ec] group-hover:text-white transition-all"
+          >
+            <svg
+              class="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-5 w-full md:h-[65vh] lg:h-[75vh] md:min-h-150"
+      >
+        <div
+          #cardAura
+          (click)="openProject('aura', cardAura)"
+          class="bento-item md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-3xl bg-[#161311] border border-[#e3dbce]/10 shadow-[0_15px_40px_rgba(0,0,0,0.15)] cursor-pointer h-72 sm:h-80 md:h-full"
+        >
+          <img
+            src="/menu.jpg"
+            alt="Aura Digital Menu"
+            class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+
+          <div
+            class="absolute inset-0 bg-linear-to-t from-[#0e100f] via-[#0e100f]/60 to-transparent z-10 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+          ></div>
+
+          <div
+            class="absolute inset-0 bg-[#c295ec]/5 group-hover:bg-[#c295ec]/10 transition-colors duration-500 z-10 mix-blend-overlay"
+          ></div>
+
+          <div
+            class="absolute bottom-6 left-6 md:bottom-8 md:left-8 right-6 md:right-8 z-20 transform translate-y-2 md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+          >
+            <div
+              class="flex flex-wrap gap-2 mb-2 md:mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"
+            >
+              <span
+                class="px-2 md:px-3 py-1 text-[0.6rem] md:text-[0.65rem] font-bold tracking-wider uppercase bg-[#161311]/60 backdrop-blur-md border border-white/10 text-[#e3dbce] rounded-full"
+                >Angular 21</span
+              >
+              <span
+                class="px-2 md:px-3 py-1 text-[0.6rem] md:text-[0.65rem] font-bold tracking-wider uppercase bg-[#161311]/60 backdrop-blur-md border border-white/10 text-[#e3dbce] rounded-full"
+                >Interactive UI</span
+              >
+            </div>
+            <p
+              class="text-[#c295ec] text-[0.65rem] md:text-xs font-bold tracking-widest uppercase mb-1"
+            >
+              Digital Platform
+            </p>
+            <h3
+              class="text-[#e3dbce] text-3xl sm:text-4xl font-serif font-black italic drop-shadow-lg"
+            >
+              Aura Menu
+            </h3>
+          </div>
+        </div>
+
+        <div
+          #cardTransport
+          (click)="openProject('transport', cardTransport)"
+          class="bento-item md:col-span-2 md:row-span-1 group relative overflow-hidden rounded-3xl bg-[#161311] border border-[#e3dbce]/10 shadow-[0_15px_40px_rgba(0,0,0,0.15)] cursor-pointer h-56 sm:h-64 md:h-full"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-t from-[#0e100f]/90 to-transparent z-10"
+          ></div>
+          <div
+            class="absolute inset-0 bg-[#62b8f1]/5 group-hover:bg-[#62b8f1]/15 group-hover:scale-105 transition-all duration-700 ease-out"
+          ></div>
+          <div class="absolute bottom-5 left-5 md:bottom-6 md:left-6 right-5 md:right-6 z-20">
+            <p
+              class="text-[#62b8f1] text-[0.65rem] md:text-xs font-bold tracking-widest uppercase mb-1"
+            >
+              Cloud Architecture
+            </p>
+            <h3
+              class="text-[#e3dbce] text-xl sm:text-2xl font-serif font-black italic mb-1 md:mb-2"
+            >
+              Transport Tracking
+            </h3>
+            <p
+              class="text-[#e3dbce]/50 text-xs md:text-sm line-clamp-1 group-hover:text-[#e3dbce]/80 transition-colors"
+            >
+              AWS ECS Clusters & Redis WebSockets.
+            </p>
+          </div>
+        </div>
+
+        <div
+          #cardOrdering
+          (click)="openProject('ordering', cardOrdering)"
+          class="bento-item md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-3xl bg-[#161311] border border-[#e3dbce]/10 shadow-[0_15px_40px_rgba(0,0,0,0.15)] cursor-pointer h-48 sm:h-56 md:h-full"
+        >
+          <img
+            src="/qr-ordering.jpg"
+            alt="QR Ordering App"
+            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+
+          <div
+            class="absolute inset-0 bg-linear-to-t from-[#0e100f] via-[#0e100f]/60 to-transparent z-10 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+          ></div>
+
+          <div
+            class="absolute bottom-5 left-5 md:bottom-6 md:left-6 right-5 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500"
+          >
+            <div
+              class="w-8 h-8 rounded-full bg-[#161311]/60 backdrop-blur-md border border-white/10 flex items-center justify-center mb-3 md:mb-4 text-[#e3dbce]/80 group-hover:text-[#c295ec] group-hover:border-[#c295ec]/50 transition-all duration-300"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+
+            <p
+              class="text-[#e3dbce]/70 text-[0.6rem] md:text-[0.65rem] font-bold tracking-widest uppercase mb-1 group-hover:text-[#c295ec] transition-colors"
+            >
+              POS Integration
+            </p>
+            <h3 class="text-[#e3dbce] text-lg sm:text-xl font-serif font-black italic">
+              QR Ordering
+            </h3>
+          </div>
+        </div>
+
+        <div
+          #cardBackend
+          (click)="openProject('backend', cardBackend)"
+          class="bento-item md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-3xl bg-[#161311] border border-[#e3dbce]/10 shadow-[0_15px_40px_rgba(0,0,0,0.15)] cursor-pointer h-48 sm:h-56 md:h-full hover:border-[#62b8f1]/40 transition-colors duration-500"
+        >
+          <div class="absolute bottom-5 left-5 md:bottom-6 md:left-6 z-20">
+            <p
+              class="text-[#e3dbce]/40 text-[0.6rem] md:text-[0.65rem] font-bold tracking-widest uppercase mb-1"
+            >
+              ASP.NET Backend
+            </p>
+            <h3 class="text-[#e3dbce] text-lg sm:text-xl font-serif font-black italic">
+              Browser App
+            </h3>
+          </div>
+          <div
+            class="absolute top-5 right-5 md:top-6 md:right-6 text-[#e3dbce]/20 group-hover:text-[#62b8f1] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+          >
+            <svg
+              class="w-5 h-5 md:w-6 md:h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    id="team"
+    class="panel relative min-h-svh h-auto py-32 w-full flex flex-col px-6 z-20 bg-[#0e100f]"
+  >
+    <div
+      class="absolute inset-0 pointer-events-none opacity-40"
+      style="
+        background-image: radial-gradient(rgba(227, 219, 206, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+      "
+    ></div>
+
+    <div
+      class="max-w-7xl mx-auto w-full my-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10"
+    >
+      <div class="max-w-xl">
+        <h2
+          class="split-heading text-[#e3dbce] text-4xl sm:text-5xl md:text-[4rem] font-serif font-black italic leading-[1.1] tracking-tight"
+        >
+          We are developers and architects of <span class="text-[#c295ec]">efficiency.</span>
+        </h2>
+
+        <p class="split-body mt-8 text-[1.1rem] text-white/70 leading-relaxed font-medium">
+          We build end-to-end solutions by merging
+          <strong class="text-[#e3dbce] font-bold">AI, software engineering</strong> and
+          <strong class="text-[#e3dbce] font-bold border-b border-[#e3dbce]/30 pb-0.5"
+            >operational design</strong
+          >.
+        </p>
+
+        <p class="split-body mt-6 text-[1.1rem] text-white/70 leading-relaxed font-medium">
+          We specialize in transforming complex business problems into elegant digital solutions. We
+          don't just write code: we design the entire ecosystem to drive your business forward.
+        </p>
+      </div>
+
+      <div class="relative w-full max-w-lg mx-auto h-100 mt-10 lg:mt-0">
+        <svg
+          class="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 500 400"
+          fill="none"
+        >
+          <line
+            class="team-line"
+            x1="80"
+            y1="180"
+            x2="250"
+            y2="280"
+            stroke="#e3dbce"
+            stroke-opacity="0.2"
+            stroke-width="2"
+            stroke-dasharray="8 8"
+          />
+          <line
+            class="team-line"
+            x1="170"
+            y1="80"
+            x2="250"
+            y2="280"
+            stroke="#e3dbce"
+            stroke-opacity="0.2"
+            stroke-width="2"
+            stroke-dasharray="8 8"
+          />
+          <line
+            class="team-line"
+            x1="330"
+            y1="80"
+            x2="250"
+            y2="280"
+            stroke="#e3dbce"
+            stroke-opacity="0.2"
+            stroke-width="2"
+            stroke-dasharray="8 8"
+          />
+          <line
+            class="team-line"
+            x1="420"
+            y1="180"
+            x2="250"
+            y2="280"
+            stroke="#e3dbce"
+            stroke-opacity="0.2"
+            stroke-width="2"
+            stroke-dasharray="8 8"
+          />
+        </svg>
+
+        <div
+          class="team-node absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2"
+          style="left: calc((80 / 500) * 100%); top: calc((180 / 400) * 100%)"
+        >
+          <div
+            class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/10 bg-[#161311] overflow-hidden mb-3 hover:border-[#c295ec] transition-colors duration-300"
+          >
+            <img
+              src="https://ui-avatars.com/api/?name=Alex&background=c295ec&color=0e100f&size=150"
+              alt="Member"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span class="text-[#e3dbce] font-bold text-sm">Hala</span>
+          <span class="text-[#c295ec] text-[0.65rem] font-bold tracking-widest uppercase mt-1"
+            >Backend</span
+          >
+        </div>
+
+        <div
+          class="team-node absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2"
+          style="left: calc((170 / 500) * 100%); top: calc((80 / 400) * 100%)"
+        >
+          <div
+            class="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-white/10 bg-[#161311] overflow-hidden mb-3 hover:border-[#c295ec] transition-colors duration-300"
+          >
+            <img
+              src="https://ui-avatars.com/api/?name=Sereen&background=c295ec&color=0e100f&size=150"
+              alt="Sereen"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span class="text-[#e3dbce] font-bold text-base md:text-lg">Sereen</span>
+          <span class="text-[#c295ec] text-xs font-bold tracking-widest uppercase mt-1"
+            >Founder</span
+          >
+        </div>
+
+        <div
+          class="team-node absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2"
+          style="left: calc((330 / 500) * 100%); top: calc((80 / 400) * 100%)"
+        >
+          <div
+            class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/10 bg-[#161311] overflow-hidden mb-3 hover:border-[#c295ec] transition-colors duration-300"
+          >
+            <img
+              src="https://ui-avatars.com/api/?name=Jordan&background=c295ec&color=0e100f&size=150"
+              alt="Member"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span class="text-[#e3dbce] font-bold text-sm">Ameer</span>
+          <span class="text-[#c295ec] text-[0.65rem] font-bold tracking-widest uppercase mt-1"
+            >Design</span
+          >
+        </div>
+
+        <div
+          class="team-node absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2"
+          style="left: calc((420 / 500) * 100%); top: calc((180 / 400) * 100%)"
+        >
+          <div
+            class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/10 bg-[#161311] overflow-hidden mb-3 flex items-center justify-center hover:border-[#62b8f1] transition-colors duration-300"
+          >
+            <svg
+              class="w-8 h-8 text-[#62b8f1]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
+              />
+            </svg>
+          </div>
+          <span class="text-[#e3dbce] font-bold text-sm">Yousef</span>
+          <span class="text-[#62b8f1] text-[0.65rem] font-bold tracking-widest uppercase mt-1"
+            >Marketing</span
+          >
+        </div>
+
+        <div
+          class="team-pill absolute -translate-x-1/2 -translate-y-1/2 z-10"
+          style="left: calc((250 / 500) * 100%); top: calc((280 / 400) * 100%)"
+        >
+          <div
+            class="bg-[#c295ec] text-[#0e100f] font-serif font-black italic text-2xl md:text-4xl px-10 py-3 md:px-12 md:py-4 rounded-4xl md:rounded-[3rem] shadow-[0_10px_40px_rgba(194,149,236,0.35)] hover:scale-105 transition-transform duration-300 cursor-pointer"
+          >
+            Team
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ <section id="faq" class="panel relative min-h-svh py-32 w-full flex flex-col items-center justify-center px-4 md:px-6 z-20 bg-[#0e100f]">
+    
+    <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: radial-gradient(rgba(227, 219, 206, 0.1) 2px, transparent 2px); background-size: 40px 40px;"></div>
+
+    <div class="max-w-5xl mx-auto w-full relative z-10 flex flex-col justify-center my-auto">
+      
+      <div class="flex justify-center mb-6">
+        <div class="border border-white/20 rounded-full px-5 py-1.5 flex items-center gap-2 backdrop-blur-sm bg-white/5">
+          <svg class="w-4 h-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span class="text-white/60 text-[0.65rem] md:text-xs font-bold tracking-[0.2em] uppercase pt-0.5">Questions? We have answers</span>
+        </div>
+      </div>
+
+      <div class="text-center mb-16 md:mb-20">
+        <h2 class="split-heading text-[#e3dbce] text-5xl sm:text-6xl md:text-[5.5rem] font-serif font-black tracking-tight leading-[1.05]">
+          Everything you <span class="text-[#c295ec] italic">need to <br class="hidden md:block" /> know.</span>
+        </h2>
+      </div>
+
+      <div class="w-full flex flex-col gap-4 md:gap-5">
+        
+        @if (faqs.length > 0) {
+          <div 
+            (click)="toggleFaq(0)"
+            class="group relative bg-[#161311] border rounded-2xl p-6 md:p-8 cursor-pointer transition-all duration-500 w-full"
+            [ngClass]="activeFaqIndex === 0 ? 'border-[#c295ec]/50 shadow-[0_10px_30px_rgba(194,149,236,0.1)]' : 'border-[#e3dbce]/10 hover:border-[#e3dbce]/30'"
+          >
+            <div class="flex justify-between items-center gap-6">
+              <div class="flex items-center gap-4 md:gap-6">
+                <span class="text-sm font-serif font-bold italic transition-colors duration-300" [ngClass]="activeFaqIndex === 0 ? 'text-[#c295ec]' : 'text-white/40'">01</span>
+                <h3 class="text-[#e3dbce] text-lg md:text-xl font-serif font-bold italic leading-tight">{{ faqs[0].question }}</h3>
+              </div>
+              <div class="w-7 h-7 shrink-0 rounded-full flex items-center justify-center transition-all duration-300 border" [ngClass]="activeFaqIndex === 0 ? 'bg-[#c295ec] border-[#c295ec] text-[#0e100f]' : 'bg-transparent border-white/20 text-white/50 group-hover:border-white/50'">
+                <svg *ngIf="activeFaqIndex === 0" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg>
+                <svg *ngIf="activeFaqIndex !== 0" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+              </div>
+            </div>
+            <div class="grid transition-all duration-500 ease-in-out" [ngClass]="activeFaqIndex === 0 ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'">
+              <div class="overflow-hidden">
+                <p class="text-white/70 text-[0.95rem] md:text-base leading-relaxed pl-10 md:pl-12 pr-4 md:pr-12">{{ faqs[0].answer }}</p>
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 items-start">
+          
+          <div class="flex flex-col gap-4 md:gap-5">
+            @for (faq of faqs; track $index) {
+              @if ($index > 0 && $index % 2 !== 0) {
+                <div 
+                  (click)="toggleFaq($index)"
+                  class="group relative bg-[#161311] border rounded-2xl p-6 md:p-8 cursor-pointer transition-all duration-500"
+                  [ngClass]="activeFaqIndex === $index ? 'border-[#c295ec]/50 shadow-[0_10px_30px_rgba(194,149,236,0.1)]' : 'border-[#e3dbce]/10 hover:border-[#e3dbce]/30'"
+                >
+                  <div class="flex justify-between items-center gap-6">
+                    <div class="flex items-start gap-4 md:gap-6">
+                      <span class="text-sm font-serif font-bold italic transition-colors duration-300 mt-1" [ngClass]="activeFaqIndex === $index ? 'text-[#c295ec]' : 'text-white/40'">0{{ $index + 1 }}</span>
+                      <h3 class="text-[#e3dbce] text-[1.1rem] md:text-lg font-serif font-bold italic leading-tight">{{ faq.question }}</h3>
+                    </div>
+                    <div class="w-7 h-7 shrink-0 rounded-full flex items-center justify-center transition-all duration-300 border" [ngClass]="activeFaqIndex === $index ? 'bg-[#c295ec] border-[#c295ec] text-[#0e100f]' : 'bg-transparent border-white/20 text-white/50 group-hover:border-white/50'">
+                      <svg *ngIf="activeFaqIndex === $index" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg>
+                      <svg *ngIf="activeFaqIndex !== $index" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                    </div>
+                  </div>
+                  <div class="grid transition-all duration-500 ease-in-out" [ngClass]="activeFaqIndex === $index ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'">
+                    <div class="overflow-hidden">
+                      <p class="text-white/70 text-[0.95rem] md:text-base leading-relaxed pl-10 md:pl-12 pr-4 md:pr-12">{{ faq.answer }}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="flex flex-col gap-4 md:gap-5">
+            @for (faq of faqs; track $index) {
+              @if ($index > 0 && $index % 2 === 0) {
+                <div 
+                  (click)="toggleFaq($index)"
+                  class="group relative bg-[#161311] border rounded-2xl p-6 md:p-8 cursor-pointer transition-all duration-500"
+                  [ngClass]="activeFaqIndex === $index ? 'border-[#c295ec]/50 shadow-[0_10px_30px_rgba(194,149,236,0.1)]' : 'border-[#e3dbce]/10 hover:border-[#e3dbce]/30'"
+                >
+                  <div class="flex justify-between items-center gap-6">
+                    <div class="flex items-start gap-4 md:gap-6">
+                      <span class="text-sm font-serif font-bold italic transition-colors duration-300 mt-1" [ngClass]="activeFaqIndex === $index ? 'text-[#c295ec]' : 'text-white/40'">0{{ $index + 1 }}</span>
+                      <h3 class="text-[#e3dbce] text-[1.1rem] md:text-lg font-serif font-bold italic leading-tight">{{ faq.question }}</h3>
+                    </div>
+                    <div class="w-7 h-7 shrink-0 rounded-full flex items-center justify-center transition-all duration-300 border" [ngClass]="activeFaqIndex === $index ? 'bg-[#c295ec] border-[#c295ec] text-[#0e100f]' : 'bg-transparent border-white/20 text-white/50 group-hover:border-white/50'">
+                      <svg *ngIf="activeFaqIndex === $index" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg>
+                      <svg *ngIf="activeFaqIndex !== $index" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                    </div>
+                  </div>
+                  <div class="grid transition-all duration-500 ease-in-out" [ngClass]="activeFaqIndex === $index ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'">
+                    <div class="overflow-hidden">
+                      <p class="text-white/70 text-[0.95rem] md:text-base leading-relaxed pl-10 md:pl-12 pr-4 md:pr-12">{{ faq.answer }}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section id="contact" class="panel relative min-h-svh py-32 w-full flex flex-col items-center justify-center px-4 md:px-6 z-20 bg-[#0e100f]">
+    
+    <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: radial-gradient(rgba(227, 219, 206, 0.1) 2px, transparent 2px); background-size: 40px 40px;"></div>
+
+    <div class="max-w-3xl mx-auto w-full relative z-10 flex flex-col justify-center my-auto items-center text-center">
+
+      <h2 class="text-[#e3dbce] text-4xl sm:text-5xl md:text-[5rem] font-serif font-black tracking-tight leading-[1.1] mb-6 md:mb-8">
+        Ready to reclaim <span class="scramble-target text-[#c295ec] italic inline-block min-w-30 text-left" data-text="time">time</span><br />
+        and scale your <span class="scramble-target text-[#c295ec] italic inline-block min-w-70 text-left" data-text="business?">business?</span>
+      </h2>
+
+      <p class="text-white/70 text-base md:text-lg leading-relaxed mb-10 md:mb-12 max-w-2xl px-4">
+        Discover how to <em class="font-serif italic text-[#e3dbce]">modernize</em> your <strong class="text-[#e3dbce] font-bold">digital presence</strong> and <strong class="text-[#e3dbce] font-bold">automate</strong> key <strong class="text-[#e3dbce] font-bold">processes</strong> to free up <em class="font-serif italic text-[#c295ec]">time</em> and <strong class="text-[#e3dbce] font-bold">resources</strong>.
+      </p>
+
+      <form class="w-full max-w-2xl flex flex-col gap-4 px-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input 
+            type="text" 
+            placeholder="Name" 
+            class="w-full bg-[#161311] border border-white/10 rounded-xl px-5 py-4 text-[#e3dbce] placeholder-white/30 focus:outline-none focus:border-[#c295ec] transition-colors duration-300"
+          >
+          <input 
+            type="email" 
+            placeholder="Email" 
+            class="w-full bg-[#161311] border border-white/10 rounded-xl px-5 py-4 text-[#e3dbce] placeholder-white/30 focus:outline-none focus:border-[#c295ec] transition-colors duration-300"
+          >
+        </div>
+        
+        <textarea 
+          placeholder="Hi, I'd like to request a free consultation!" 
+          rows="4" 
+          class="w-full bg-[#161311] border border-white/10 rounded-xl px-5 py-4 text-[#e3dbce] placeholder-white/30 focus:outline-none focus:border-[#c295ec] transition-colors duration-300 resize-none mb-2"
+        ></textarea>
+
+        <button 
+          type="button" 
+          class="w-full border border-[#c295ec] text-[#c295ec] font-bold tracking-widest uppercase text-xs md:text-sm px-8 py-5 rounded-xl hover:bg-[#c295ec] hover:text-[#0e100f] transition-all duration-300"
+        >
+          Request a free consultation
+        </button>
+      </form>
+
+      <div class="mt-16 flex flex-col items-center gap-6">
+        <div class="flex gap-6 text-white/50">
+          <a href="#" class="hover:text-[#c295ec] transition-colors">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="#" class="hover:text-[#c295ec] transition-colors">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 1.79-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 1.79 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-1.79 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-1.778-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+        <div class="text-white/40 text-[0.65rem] md:text-xs tracking-wider flex gap-3">
+          <a routerLink="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+          <span>|</span>
+          <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="project-modal fixed inset-0 hidden z-9999">
+  <div class="project-modal-bg absolute overflow-hidden shadow-2xl">
+    <div
+      class="absolute inset-0 opacity-20 pointer-events-none"
+      style="background: radial-gradient(circle at top right, #c295ec 0%, transparent 50%)"
+    ></div>
+  </div>
+
+  <div class="project-modal-content absolute inset-0 w-full h-full flex flex-col overflow-y-auto">
+    <button
+      (click)="closeProject()"
+      class="absolute top-6 right-6 md:top-8 md:right-8 z-50 w-10 h-10 md:w-12 md:h-12 bg-white/5 hover:bg-[#c295ec] hover:text-white border border-white/10 rounded-full flex items-center justify-center text-white transition-colors duration-300"
+    >
+      <svg
+        class="w-5 h-5 md:w-6 md:h-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    @if (activeProject) {
+      <div
+        class="max-w-5xl mx-auto w-full px-4 md:px-6 py-16 md:py-24 flex flex-col justify-center min-h-full mt-10 md:mt-0"
+      >
+        <p
+          class="text-[#c295ec] text-xs md:text-sm font-bold tracking-widest uppercase mb-3 md:mb-4"
+        >
+          {{ activeProject.category }}
+        </p>
+        <h2
+          class="text-[#e3dbce] text-4xl sm:text-5xl md:text-[5rem] font-serif font-black italic leading-[1.05] tracking-tight mb-6 md:mb-8"
+        >
+          {{ activeProject.title }}
+        </h2>
+
+        <div class="flex flex-wrap gap-2 md:gap-3 mb-8 md:mb-10">
+          @for (tech of activeProject.tech; track tech) {
+            <span
+              class="px-3 md:px-4 py-1.5 md:py-2 text-[0.65rem] md:text-xs font-bold tracking-wider uppercase bg-[#e3dbce]/10 border border-[#e3dbce]/10 text-[#e3dbce] rounded-full"
+            >
+              {{ tech }}
+            </span>
+          }
+        </div>
+
+        <div class="w-full h-px bg-white/10 mb-8 md:mb-12"></div>
+
+        <div class="flex flex-col gap-8 md:gap-12 mb-12 md:mb-16">
+          <p
+            class="text-[#e3dbce] text-xl sm:text-2xl md:text-3xl leading-[1.4] font-serif italic max-w-4xl"
+          >
+            "{{ activeProject.overview }}"
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+            @if (activeProject.features) {
+              <div class="border-l border-[#c295ec]/30 pl-4 md:pl-6">
+                <h4
+                  class="text-[#c295ec] text-[0.65rem] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-3"
+                >
+                  01 / The Experience
+                </h4>
+                <p class="text-white/70 text-[0.95rem] md:text-[1.05rem] leading-relaxed">
+                  {{ activeProject.features }}
+                </p>
+              </div>
+            }
+            @if (activeProject.vision) {
+              <div class="border-l border-[#62b8f1]/30 pl-4 md:pl-6">
+                <h4
+                  class="text-[#62b8f1] text-[0.65rem] md:text-xs font-bold tracking-widest uppercase mb-2 md:mb-3"
+                >
+                  02 / The Vision
+                </h4>
+                <p class="text-white/70 text-[0.95rem] md:text-[1.05rem] leading-relaxed">
+                  {{ activeProject.vision }}
+                </p>
+              </div>
+            }
+          </div>
+        </div>
+
+        <a
+          [href]="activeProject.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 md:gap-4 text-[#e3dbce] font-bold tracking-widest uppercase text-xs md:text-sm group w-max"
+        >
+          <div
+            class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#c295ec]/50 flex items-center justify-center group-hover:bg-[#c295ec] transition-colors"
+          >
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+          {{ activeProject.link }}
+        </a>
+      </div>
+    }
+  </div>
+</div>

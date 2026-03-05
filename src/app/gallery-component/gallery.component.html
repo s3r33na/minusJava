@@ -1,0 +1,102 @@
+<div class="gallery-wrap bg-black" #galleryWrap>
+  <div class="gallery gallery--bento gallery--switch" id="gallery-8">
+    @for (img of images; track $index) {
+      <div class="gallery__item">
+        <img [src]="img" alt="minusJava Project" />
+      </div>
+    }
+  </div>
+</div> 
+<div class="intro-section" #introContainer>
+  
+  <div class="kicker-text">01 / INTRODUCTION</div>
+
+ <h1 class="hero-heading">
+    <span class="highlight-box"></span>
+    <span class="text-white">WHO</span><span class="text-gray">ARE</span><span class="text-outline">WE?</span>
+  </h1>
+
+  <h2 class="intro-paragraph">
+    @for (word of introWords; track $index) {
+      <span class="word">{{ word }}</span>&nbsp;
+    }
+  </h2>
+
+  <div class="kicker-text bottom-kicker">// SCROLL DOWN TO INSPECT</div>
+
+</div>
+<div class="cards-container">
+  @for (card of portfolioCards; track $index) {
+    <div class="card-wrapper">
+      <div class="card" #cardNode (click)="flipCard($index, cardNode)">
+        
+        <div class="card-face card-front">
+          <h3>{{ card.title }}</h3>
+          <span class="hint">Click to flip ⤵</span>
+        </div>
+        
+        <div class="card-face card-back">
+          <p>{{ card.content }}</p>
+        </div>
+
+      </div>
+    </div>
+  }
+</div>
+
+<footer class="mj-footer" #footerWrap>
+  
+  <div class="footer-cta">
+    <h2 class="cta-heading">READY TO <span class="text-blue">SCALE?</span></h2>
+    <p class="cta-subtext" #scrambleTarget>// Let's engineer your next digital solution.</p>
+    <button class="cta-button">START A PROJECT</button>
+  </div>
+
+  <hr class="footer-divider">
+
+  <div class="footer-grid">
+    
+    <div class="footer-brand">
+      <h3 class="brand-name">minusJava.</h3>
+      <p class="brand-desc" #scrambleTarget>A digital solutions collective specializing in high-performance web applications and enterprise architecture.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Focus Areas</h4>
+      <ul>
+        <li><a href="#">Custom Web Solutions</a></li>
+        <li><a href="#">Aura Platform</a></li>
+        <li><a href="#">Digital Real Estate</a></li>
+        <li><a href="#">Hardware & IoT</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Connect</h4>
+      <ul>
+        <li>Amman, Jordan</li>
+        <li><a href="mailto:hello@minusjava.com" class="email-link">hello&#64;minusjava.com</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Socials</h4>
+      <ul>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 minusJava. All rights reserved.</p>
+    <div class="legal-links">
+      <a href="#">Privacy Policy</a>
+      <span class="dot">•</span>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+
+</footer>

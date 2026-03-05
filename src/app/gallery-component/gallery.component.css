@@ -1,0 +1,427 @@
+p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.gallery-wrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: none;
+}
+
+.gallery__item {
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: none;
+  position: relative;
+}
+
+/* Flattened from SCSS */
+.gallery__item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery--bento {
+  display: grid;
+  gap: 1vh;
+  grid-template-columns: repeat(3, 32.5vw);
+  grid-template-rows: repeat(4, 23vh);
+  justify-content: center;
+  align-content: center;
+}
+
+.gallery--final.gallery--bento {
+  grid-template-columns: repeat(3, 100vw);
+  grid-template-rows: repeat(4, 49.5vh);
+  gap: 1vh;
+}
+
+.gallery--bento .gallery__item:nth-child(1) {
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+.gallery--bento .gallery__item:nth-child(2) {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.gallery--bento .gallery__item:nth-child(3) {
+  grid-area: 2 / 2 / 4 / 3;
+}
+
+.gallery--bento .gallery__item:nth-child(4) {
+  grid-area: 1 / 3 / 3 / 3;
+}
+
+.gallery--bento .gallery__item:nth-child(5) {
+  grid-area: 3 / 1 / 3 / 2;
+}
+
+.gallery--bento .gallery__item:nth-child(6) {
+  grid-area: 3 / 3 / 5 / 4;
+}
+
+.gallery--bento .gallery__item:nth-child(7) {
+  grid-area: 4 / 1 / 5 / 2;
+}
+
+.gallery--bento .gallery__item:nth-child(8) {
+  grid-area: 4 / 2 / 5 / 3;
+}
+
+.section {
+  padding: 2rem 5rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 2rem;
+  
+  /* FIX: Add a massive bottom margin just to test the scroll. 
+     You can reduce this later once the animation is working. */
+  margin-bottom: 40vh; 
+}
+
+/* 1. The Wrapper: Establishes the 3D depth of field */
+.card-wrapper {
+  perspective: 1000px; 
+  width: 320px;
+  height: 420px;
+  cursor: pointer;
+}
+
+/* 2. The Card: Holds the front and back, and preserves the 3D space */
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d; /* CRITICAL: Allows child elements to exist in 3D space */
+}
+
+/* 3. The Faces: Shared styles for both front and back */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* CRITICAL: Hides the back of the element when it faces away */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. Front specific styling */
+.card-front {
+  background: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+.card-front h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: #888;
+  opacity: 0.7;
+}
+
+/* 5. Back specific styling */
+.card-back {
+  background: #0055ff; /* A nice bright accent color */
+  color: #ffffff;
+  transform: rotateY(180deg); /* CRITICAL: Pre-rotates the back face so it sits behind the front face */
+}
+
+.card-back p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+/*/* =========================================
+   1. INTRO PARAGRAPH (TECH MATRIX STYLE)
+   ========================================= */
+.intro-section {
+  max-width: 1000px;
+  margin: 15vh auto 10vh auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The tiny tracking text at the top and bottom */
+.kicker-text {
+  font-family: 'Courier New', Courier, monospace;
+  color: #3146ff; /* minusJava Blue */
+  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.bottom-kicker {
+  margin-top: 2rem;
+  color: #7a7a7a;
+}
+
+/* The giant WHO ARE WE text container */
+.hero-heading {
+  font-size: 7rem; /* Massive typography */
+  font-weight: 900;
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-style: normal !important; /* Forces the text to stop being italic */
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0 0 2rem 0;
+  position: relative;
+  display: flex;         
+  justify-content: center;
+  gap: 20px; /* Perfectly spaces the words without padding */
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* The blue block that sits behind the text */
+.highlight-box {
+  position: absolute;
+  top: -5%; 
+  left: -2%; /* Shifts the box slightly to the left of the 'W' */
+  width: 42%; /* Narrowed down so it perfectly covers WHO and touches ARE */
+  height: 110%;
+  background-color: #3146ff; /* minusJava Blue */
+  z-index: -1; 
+}
+
+/* Text coloring variants */
+.text-white {
+  color: #ffffff;
+  padding: 0; 
+}
+
+.text-gray {
+  color: #121212; /* Rich charcoal */
+  padding: 0;
+}
+
+.text-outline {
+  color: transparent; 
+  -webkit-text-stroke: 3px #121212; /* Matches the rich charcoal */
+  padding: 0;
+}
+
+/* The paragraph text that GSAP animates */
+.intro-paragraph {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #333333; 
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* GSAP target class */
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Responsive fix for mobile so the giant text doesn't break the screen */
+@media (max-width: 768px) {
+  .hero-heading { font-size: 3.5rem; gap: 10px; }
+  .highlight-box { width: 50%; left: -2%; }
+  .intro-paragraph { font-size: 1.2rem; }
+}
+
+
+/* =========================================
+   MINUSJAVA PREMIUM FOOTER
+   ========================================= */
+.mj-footer {
+  background-color: #0a0a0a; /* Deepest black for contrast */
+  color: #ffffff;
+  padding: 8rem 5% 2rem 5%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin-top: 10vh; /* Adds spacing above the footer */
+}
+
+/* --- Call To Action Section --- */
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.cta-heading {
+  font-size: 5rem;
+  font-weight: 900;
+  font-family: 'Arial Black', Impact, sans-serif;
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+  line-height: 1;
+}
+
+.text-blue {
+  color: #3146ff; /* minusJava Blue */
+}
+
+.cta-subtext {
+  font-family: 'Courier New', Courier, monospace;
+  color: #888888;
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  min-height: 1.5rem; /* Prevents layout jump while text is blank */
+}
+
+.cta-button {
+  background-color: #3146ff;
+  color: #ffffff;
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px; /* Sharp corners for corporate feel */
+}
+
+.cta-button:hover {
+  background-color: #ffffff;
+  color: #3146ff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(49, 70, 255, 0.2);
+}
+
+/* --- Grid Section --- */
+.footer-divider {
+  border: none;
+  border-top: 1px solid #222222;
+  margin-bottom: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.brand-name {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.05em;
+}
+
+.brand-desc {
+  color: #888888;
+  line-height: 1.6;
+  max-width: 300px;
+  min-height: 4.8rem; /* Prevents layout jump while text is blank */
+}
+
+.footer-column h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.8rem;
+  color: #888888;
+}
+
+.footer-column ul li a {
+  color: #888888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-column ul li a:hover,
+.email-link:hover {
+  color: #3146ff;
+}
+
+/* --- Bottom Legal Strip --- */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid #222222;
+  color: #555555;
+  font-size: 0.9rem;
+}
+
+.legal-links a {
+  color: #555555;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legal-links a:hover {
+  color: #ffffff;
+}
+
+.dot {
+  margin: 0 0.8rem;
+}
+
+/* --- Responsive Mobile Tweaks --- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
+  }
+  .cta-heading {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr; /* 1 column on phones */
+    text-align: center;
+  }
+  .brand-desc {
+    margin: 0 auto;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

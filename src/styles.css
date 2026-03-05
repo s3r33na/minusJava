@@ -1,1 +1,122 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+/* 1. Prevent accidental horizontal scrolling entirely */
+/* 1. Prevent horizontal overflow on the root */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* 2. Hide scrollbars universally for Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  background: transparent !important;
+}
+
+/* 3. Hide scrollbars universally for Firefox, IE, and Edge */
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+/* Use the animation classes as the selectors instead of the blur classes */
+.animate-float-slow, 
+.animate-float-medium, 
+.animate-float-fast {
+  will-change: transform;
+  pointer-events: none;
+  /* This ensures the browser treats them as 3D layers for smoother animation */
+  backface-visibility: hidden;
+}
+
+/* The floating animation keyframes */
+@keyframes float-bubble {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.08);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.95);
+  }
+}
+
+.animate-float-slow {
+  animation: float-bubble 18s infinite ease-in-out;
+}
+
+.animate-float-medium {
+  animation: float-bubble 12s infinite ease-in-out;
+}
+
+.animate-float-fast {
+  animation: float-bubble 8s infinite ease-in-out;
+}
+@media (max-width: 768px) {
+  /* Allow panels to grow if the content is longer than the screen */
+  .panel {
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 80px; /* Space for the fixed nav */
+    padding-bottom: 40px;
+  }
+
+  /* Reset the logo size for mobile */
+  .logo-container {
+    font-size: 12vw !important; /* Scale based on screen width */
+  }
+}
+/* ==================================================
+   📱 MOBILE & TABLET FIXES (Narrow Screens)
+   ================================================== */
+@media (max-width: 768px) {
+  /* Remove strict h-screen so content can scroll naturally if it's long */
+  .panel {
+    height: auto !important;
+    min-height: 100svh !important;
+    padding-top: 120px !important; /* Space for the fixed navbar */
+    padding-bottom: 60px !important;
+  }
+  
+  /* Make the giant animated logo fit on phones */
+  .logo-container {
+    font-size: 16vw !important;
+  }
+}
+
+/* ==================================================
+   💻 SMALL LAPTOP FIXES (Wide but Short Screens)
+   Triggers on screens shorter than 850px (e.g., 13" MacBooks)
+   ================================================== */
+@media (max-height: 850px) and (min-width: 769px) {
+  
+  /* 1. Scale headings based on Viewport Height (vh) instead of width */
+  .split-heading, h2 {
+    font-size: clamp(2rem, 6vh, 3.5rem) !important;
+    line-height: 1.1 !important;
+  }
+  
+  /* 2. Shrink massive text and paragraphs */
+  .split-body, p {
+    font-size: clamp(0.85rem, 1.8vh, 1rem) !important;
+    margin-top: 1rem !important;
+  }
+
+  /* 3. Compress huge Tailwind gaps and margins */
+  .gap-16, .gap-24 { gap: 2rem !important; }
+  .mb-16 { margin-bottom: 2rem !important; }
+  .mb-12 { margin-bottom: 1.5rem !important; }
+  .py-24 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  .mt-10 { margin-top: 1rem !important; }
+
+  /* 4. Shrink the paddings inside the cards so they don't overflow */
+  .p-8 { padding: 1.5rem !important; }
+  .py-10 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+  /* 5. Shrink the Bento Grid height */
+  .bento-item {
+    height: auto !important;
+    min-height: 160px !important;
+  }
+}
